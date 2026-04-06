@@ -8,6 +8,7 @@ import helmet from "helmet";
 import rateLimit, { ipKeyGenerator } from "express-rate-limit";
 import axios from "axios";
 import geoip from 'geoip-lite'
+import morgan from 'morgan'
 
 const app = express();
 const port = 3000;
@@ -32,7 +33,7 @@ const bootstrap = async () => {
      return country === "EG" ?5:3
     },
     // skipSuccessfulRequests: true,
-    standardHeaders: "draft-8",
+    standardHeaders: "draft-6",
     requestPropertyName: "ratelimit",
     handler: function (req, res, next) {
       return res
@@ -64,6 +65,7 @@ const bootstrap = async () => {
   //global middleware
   app.set("trust proxy", true);
   app.use(cors(), express.json(), helmet());
+  app.use(morgan('combined'))
   app.use("/uploads", express.static(resolve("../uploads")));
 
   //DB connection

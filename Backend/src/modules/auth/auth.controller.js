@@ -46,7 +46,7 @@ router.patch("/reset-password-email", validation(validators.resetPassword),async
      return country === "EG" ?5:3
     },
     // skipSuccessfulRequests: true,
-    standardHeaders: "draft-8",
+    standardHeaders: "draft-6",
     requestPropertyName: "ratelimit",
     handler: function (req, res, next) {
       return res

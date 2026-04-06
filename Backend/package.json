@@ -8,8 +8,8 @@
     "node": "v22.19.0"
   },
   "scripts": {
-    "start:dev": "node --watch ./src/main.js",
-    "start:prod": "node -e \"process.env.NODE_ENV='production';import('./src/main.js')\" --input-type=module"
+    "start:dev": "cross-env NODE_ENV=development node --watch-path=. ./src/main.js",
+    "start:prod": "cross-env NODE_ENV=production pm2 start ./src/main.js -i 20"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongodb": "^7.0.0",
     "mongoose": "^9.2.2",
+    "morgan": "^1.10.1",
     "multer": "^2.1.1",
     "nodemailer": "^8.0.3",
     "redis": "^5.11.0"
